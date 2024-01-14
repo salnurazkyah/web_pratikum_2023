@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator Biaya Parkir</title>
+    <script>
+        function hitungBiayaParkir() {
+            var jamMasuk = parseInt(document.getElementById("jam-masuk").value);
+            var jamKeluar = parseInt(document.getElementById("jam-keluar").value);
+
+            var lamaParkir = jamKeluar - jamMasuk;
+            var biaya = 0;
+
+            if (lamaParkir <= 2) {
+                biaya = 3000;
+            } else {
+                biaya = 3000 + (lamaParkir - 2) * 1000;
+            }
+
+            if (lamaParkir <= 4) {
+                biaya = 5000;
+            } else {
+                biaya = 5000 + (lamaParkir - 4) * 1000;
+            }
+
+            document.getElementById("hasil-biaya").innerHTML = "Biaya Parkir: " + biaya + " Rupiah";
+        }
+    </script>
+</head>
+<body>
+    <h2>Kalkulator Biaya Parkir</h2>
+    <label for="jam-masuk">Jam Masuk (dalam angka):</label>
+    <input type="number" id="jam-masuk">
+    <br><br>
+    <label for="jam-keluar">Jam Keluar (dalam angka):</label>
+    <input type="number" id="jam-keluar">
+    <br><br>
+    <button onclick="hitungBiayaParkir()">Hitung Biaya Parkir</button>
+    <br><br>
+    <p id="hasil-biaya"></p>
+</body>
+</html>

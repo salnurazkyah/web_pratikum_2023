@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Validasi</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .error-message {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Form Validasi</h1>
+    <form id="myForm" onsubmit="validateForm(event)">
+      <div class="form-group">
+        <label for="namaPelanggan">Nama Pelanggan:</label>
+        <input type="text" class="form-control" id="namaPelanggan" maxlength="30" required>
+        <div id="namaPelangganError" class="error-message"></div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" required>
+        <div id="emailError" class="error-message"></div>
+      </div>
+      <div class="form-group">
+        <label for="jamKeberangkatan">Jam Keberangkatan:</label>
+        <input type="text" class="form-control" id="jamKeberangkatan" placeholder="Format: 00.00 - 23.59" required>
+        <div id="jamKeberangkatanError" class="error-message"></div>
+      </div>
+      <div class="form-group">
+        <label for="tujuanKeberangkatan">Tujuan Keberangkatan:</label>
+        <input type="text" class="form-control" id="tujuanKeberangkatan" required>
+        <div id="tujuanKeberangkatanError" class="error-message"></div>
+      </div>
+      <div class="form-group">
+        <label for="jumlahTiket">Jumlah Tiket:</label>
+        <input type="number" class="form-control" id="jumlahTiket" min="1" max="10" required>
+        <div id="jumlahTiketError" class="error-message"></div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      var namaPelanggan = document.getElementById("namaPelanggan").value;
+      var email = document.getElementById("email").value;
+      var jamKeberangkatan = document.getElementById("jamKeberangkatan").value;
+      var tujuanKeberangkatan = document.getElementById("tujuanKeberangkatan").value;
+      var jumlahTiket = document.getElementById("jumlahTiket").value;
+
+      var valid = true;
+
+      // Validasi Nama Pelanggan
+      var namaPelangganError = document.getElementById("namaPelangganError");
+      if (namaPelanggan.length === 0 || namaPelanggan.length > 30) {
+        namaPelangganError.innerHTML = "Nama pelanggan harus diisi (maksimum 30 karakter)";
+        valid = false;
+      } else {
+        namaPelangganError.innerHTML = "";
+      }
+
+      // Validasi Email
+      var emailError = document.getElementById("emailError");
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        emailError.innerHTML = "Email harus diisi dengan format yang valid";
+        valid = false;
+      } else {
+        emailError.innerHTML = "";
+      }
+
+      // Validasi Jam Keberangkatan
+      var jamKeberangkatanError = document.getElementById("jamKeberangkatanError");
+      var jamRegex = /^(0[0-9]|1[0-9]|2[0-3]|[0-9])\.[0-5][0-9]$/;
+      if (!jamRegex.test(jamKeberangkatan)) {
+        jamKeberangkatanError.innerHTML = "Format jam antara 00.00 - 23.59";
+        valid = false;
+      } else {
+        jamKeberangkatanError.innerHTML = "";
+      }
+
+      // Validasi Tujuan Keberangkatan
+      var tujuanKeberangkatanError = document.getElementById("tujuanKeberangkatanError");
+      if (tujuanKeberangkatan.length === 0) {
+        tujuanKeberangkatanError.innerHTML = "Tujuan keberangkatan harus diisi";
+        valid = false;
+      } else {
+        tujuanKeberangkatanError.innerHTML = "";
+      }
+
+      // Validasi Jumlah Tiket
+      var jumlahTiketError = document.getElementById("jumlahTiketError");
+      if (jumlahTiket < 1 || jumlahTiket > 10 || isNaN(jumlahTiket)) {
+        jumlahTiketError.innerHTML = "Jumlah tiket harus diisi dengan bilangan bulat antara 1 - 10";
+        valid = false;
+      } else {
+        jumlahTiketError.innerHTML = "";
+      }
+
+      // Menampilkan hasil jika valid
+      var result = document.getElementById("result");
+      if (valid) {
+        result.innerHTML = `
+          <h2>Detail Pesanan:</h2>
+          <p>Nama Pelanggan: ${namaPelanggan}</p>
+          <p>Email: ${email}</p>
+          <p>Jam Keberangkatan: ${jamKeberangkatan}</p>
+          <p>Tujuan Keberangkatan: ${tujuanKeberangkatan}</p>
+          <p>Jumlah Tiket: ${jumlahTiket}</p>
+        `;
+      } else {
+        result.innerHTML = "";
+      }
+    }
+  </script>
+</body>
+</html>

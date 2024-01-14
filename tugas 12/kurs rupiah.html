@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Konverter Mata Uang</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Konverter Mata Uang</h1>
+    <div class="form-group">
+      <label for="nilaiAsing">Masukkan Nilai Mata Uang Asing:</label>
+      <input type="number" class="form-control" id="nilaiAsing" placeholder="Masukkan nilai mata uang asing">
+    </div>
+    <div class="form-group">
+      <label for="pilihanValas">Pilih Mata Uang Asing:</label>
+      <select id="pilihanValas" class="form-control" onchange="konversi()">
+        <option value="usd">Dollar US</option>
+        <option value="sgd">Dollar Singapore</option>
+        <option value="myr">Ringgit Malaysia</option>
+        <option value="jpy">Yen Jepang</option>
+        <option value="eur">Euro</option>
+        <option value="sar">Riyal Arab Saudi</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="hasilKonversi">Nilai Rupiah:</label>
+      <input type="text" class="form-control" id="hasilKonversi" placeholder="Nilai rupiah akan ditampilkan di sini" readonly>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function konversi() {
+      var nilaiAsing = parseFloat(document.getElementById("nilaiAsing").value);
+      var pilihanValas = document.getElementById("pilihanValas").value;
+      var hasilKonversi = document.getElementById("hasilKonversi");
+
+      switch (pilihanValas) {
+        case "usd":
+          hasilKonversi.value = (nilaiAsing * 9915).toFixed(2) + " rupiah";
+          break;
+        case "sgd":
+          hasilKonversi.value = (nilaiAsing * 13472).toFixed(2) + " rupiah";
+          break;
+        case "myr":
+          hasilKonversi.value = (nilaiAsing * 874).toFixed(2) + " rupiah";
+          break;
+        case "jpy":
+          hasilKonversi.value = (nilaiAsing * 120).toFixed(2) + " rupiah";
+          break;
+        case "eur":
+          hasilKonversi.value = (nilaiAsing * 15888).toFixed(2) + " rupiah";
+          break;
+        case "sar":
+          hasilKonversi.value = (nilaiAsing * 3592).toFixed(2) + " rupiah";
+          break;
+        default:
+          hasilKonversi.value = "Pilih mata uang asing";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cari teman</title>
+</head>
+<body>
+    <label for="">cari siswa :</label>
+    <input type="text" name="nama_siswa" id="nama_siswa" required/>
+    <button type="button" onclick ="carinama()">cari !</button>
+    <br />
+    <hr />
+    <h3 id="output">nama yang anda cari adalah ?</h3>
+    <script>
+        function carinama() {
+            const namasiswa = document.getElementById("nama_siswa").value;
+            document.getElementById("output").innerHTML = namasiswa;
+        }
+
+        function iseng(){
+            document.getElementById('output').style.margintop = '200px'
+        }
+    </script>
+</body>
+</html>

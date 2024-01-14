@@ -1,0 +1,22 @@
+nav {background-color: black;
+    color:white;
+    }
+    
+    .Karyawan {
+        display:flex;
+        align-items:center;
+        /* background-color: aqua; */
+        width: 40%;
+        margin-left:80px;
+        justify-content: space-between;
+    }
+    
+    a{
+        text-decoration: none;
+        color:beige
+    }
+    form {
+        /* background-color: aqua; */
+        width:30%;
+        margin:auto;
+    }   

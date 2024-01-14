@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Menghitung Kurs Rupiah</title>
+  </head>
+  <body>
+    <h1>Menghitung Kurs Rupiah</h1>
+
+    <label for="jumlahDollar">Masukkan Jumlah Dollar:</label>
+    <input type="number" id="jumlahDollar" onChange="hitungNilaiRupiah()" />
+
+    <p>Nilai dalam Rupiah: <span id="nilaiRupiah"></span></p>
+
+    <script>
+      function hitungNilaiRupiah() {
+        const jumlahDollar = document.getElementById("jumlahDollar").value;
+        const kurs = 14650;
+
+        const nilaiRupiah = jumlahDollar * kurs;
+
+        document.getElementById("nilaiRupiah").innerText = "Rp " + nilaiRupiah; // Menampilkan nilai rupiah dengan 2 angka di belakang koma
+      }
+    </script>
+  </body>
+</html>
